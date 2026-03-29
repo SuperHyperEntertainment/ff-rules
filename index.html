@@ -4,77 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudioPro | Rules</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-        /* Page-specific styling to enforce the small Courier New essay look */
-        .rules-container {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            padding: 48px;
+        /* =========================================
+           BASE STUDIOPRO VARIABLES & BODY
+           ========================================= */
+        :root {
+            --accent: #6366f1;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --bg-color: #0f172a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-color);
+            overflow: hidden; /* Keeps the background perfectly still */
             display: flex;
-            flex-direction: column;
-            gap: 16px;
-            min-height: 60vh; /* Ensures the glass panel looks good even if the text is short at first */
+            justify-content: center; /* Centers horizontally */
+            align-items: center;     /* Centers vertically */
+            min-height: 100vh;
+        }
+
+        /* --- BACKGROUND SYMBOLS --- */
+        #bg-symbols {
+            position: fixed; 
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
         }
         
-        .rules-container h1 {
-            color: var(--accent);
-            font-size: 18px;
-            font-weight: bold;
+        .bg-char {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.05); /* Faint white characters */
+            font-weight: 800;
+            font-family: monospace;
+            user-select: none;
+        }
+
+        /* =========================================
+           THE WHITE CENTERED BOX
+           ========================================= */
+        .rules-modal {
+            background-color: #ffffff;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh; /* Prevents the box from going off-screen */
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        /* --- THE STUDIOPRO HEADING --- */
+        .rules-header {
+            padding: 32px 32px 24px 32px;
+            text-align: center;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .rules-header h1 {
+            font-family: var(--font-main);
+            color: var(--accent); /* StudioPro Indigo Accent */
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
             text-transform: uppercase;
-            border-bottom: 1px dashed var(--glass-border);
-            padding-bottom: 16px;
+        }
+
+        /* --- THE ESSAY TEXT --- */
+        .rules-content {
+            padding: 32px;
+            overflow-y: auto; /* Adds a scrollbar if the essay is huge! */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            color: #1e293b; /* Very dark blue/grey for contrast on white */
+            line-height: 1.6;
+        }
+
+        .rules-content p {
             margin-bottom: 16px;
-            margin-top: 0;
         }
 
-        .rules-container p {
-            margin: 0; /* Removing default margins since we use flex gap above */
-        }
-
+        /* --- THE BOTTOM BUTTONS --- */
         .action-buttons {
+            padding: 24px 32px;
+            background-color: #f8fafc; /* Slightly grey footer for the buttons */
+            border-top: 1px solid #e2e8f0;
+            border-radius: 0 0 16px 16px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 32px;
-            margin-top: 24px;
-            padding-bottom: 40px;
+            gap: 24px;
+        }
+
+        .pro-btn {
+            background: var(--accent);
+            color: white; border: none; padding: 10px 24px; border-radius: 8px;
+            font-family: var(--font-main); font-weight: 600; cursor: pointer; 
+            text-decoration: none; font-size: 14px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         
-        /* Overriding the button fonts to match the page vibe */
-        .action-buttons .pro-btn, 
-        .action-buttons .text-btn {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 14px;
-            letter-spacing: 1px;
+        .pro-btn:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); 
         }
+
+        .text-btn { 
+            background: none; border: none; color: #64748b; 
+            font-family: var(--font-main); cursor: pointer; font-size: 14px; 
+            font-weight: 600; transition: color 0.2s; 
+        }
+        
+        .text-btn:hover { color: #0f172a; }
+
+        /* Custom Scrollbar for the Essay */
+        .rules-content::-webkit-scrollbar { width: 8px; }
+        .rules-content::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 4px;}
+        .rules-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .rules-content::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
-<body class="dark-mode">
+<body>
 
     <div id="bg-symbols"></div>
 
-    <main class="scrolling-content">
+    <div class="rules-modal">
         
-        <section class="glass-panel rules-container">
+        <div class="rules-header">
             <h1>System Rules & Guidelines</h1>
+        </div>
+        
+        <div class="rules-content">
+            <p>Rule 1: Insert your first rule or paragraph here. The text will automatically wrap and stay constrained within the white box.</p>
             
-            <p>Rule 1: Insert your first rule or paragraph here. The text will automatically wrap and stay constrained within the nice glass panel.</p>
-            
-            <p>Rule 2: You can keep adding as many paragraph tags as you need for the essay. The panel will expand downwards seamlessly as you scroll.</p>
+            <p>Rule 2: You can keep adding as many paragraph tags as you need. If the text gets too long, this specific section will become scrollable so the box never breaks your screen layout!</p>
             
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </section>
+            
+            </div>
 
         <div class="action-buttons">
-            <button onclick="window.history.back()" class="text-btn">&larr; BACK</button>
-            <a href="https://superhyperentertainment.github.io/ff-login" class="pro-btn">LOGIN</a>
+            <button onclick="window.history.back()" class="text-btn">Cancel</button>
+            <a href="https://superhyperentertainment.github.io/ff-login" class="pro-btn">I Accept - Login</a>
         </div>
 
-    </main>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        const bgContainer = document.getElementById('bg-symbols');
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/<>{}[]';
+        
+        // Generate 75 random background characters
+        for (let i = 0; i < 75; i++) {
+            let charElement = document.createElement('span');
+            charElement.className = 'bg-char';
+            charElement.innerText = characters.charAt(Math.floor(Math.random() * characters.length));
+            
+            // Random positioning and sizing
+            charElement.style.left = Math.random() * 100 + 'vw';
+            charElement.style.top = Math.random() * 100 + 'vh';
+            charElement.style.fontSize = (Math.random() * 24 + 10) + 'px';
+            charElement.style.opacity = Math.random() * 0.4 + 0.1;
+            
+            bgContainer.appendChild(charElement);
+        }
+    </script>
+
 </body>
 </html>
