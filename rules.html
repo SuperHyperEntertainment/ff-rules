@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            background-color: #050505; /* Matches your sandbox dark theme */
+            color: #ccc;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px; /* Small font size as requested */
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .rules-container {
+            max-width: 800px; /* Keeps the essay readable so it doesn't stretch too wide */
+            width: 100%;
+            flex-grow: 1; /* Pushes the buttons to the bottom if the text is short */
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 16px;
+            text-transform: uppercase;
+            border-bottom: 1px dashed #555;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Styling the essay text so paragraphs have nice spacing */
+        p {
+            margin-bottom: 15px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+            justify-content: center;
+            border-top: 1px dashed #555;
+            padding-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #1a1a1a;
+            color: #aaa;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: #333;
+            color: #fff;
+            border-color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="rules-container">
+        <h1>System Rules & Guidelines</h1>
+        
+        <p>Rule 1: Insert your first rule or paragraph here.</p>
+        
+        <p>Rule 2: You can keep adding as many paragraph tags as you need for the essay. The layout will automatically expand downwards and keep the buttons at the very end.</p>
+        
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+
+    <div class="button-container">
+        <button onclick="window.history.back()">BACK</button>
+        <button onclick="window.location.href='#'">LOGIN</button>
+    </div>
+
+</body>
+</html>
